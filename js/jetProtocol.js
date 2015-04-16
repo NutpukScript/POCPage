@@ -104,6 +104,8 @@ jetProtocol.prototype.createElement = function()
 		outputContainer.className = "output-box";
 		outputLabel.className = "firstBox";
 
+		outputTextarea.readOnly = true;
+
 		outputContainer.appendChild(outputLabel);
 		outputContainer.appendChild(outputTextarea);
 

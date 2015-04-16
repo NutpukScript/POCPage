@@ -1,6 +1,7 @@
-jetChannel = function( channelNum, mainContainer )
+jetChannel = function( number, mainContainer )
 {
-	this.id = channelNum;
+	this.number = number;
+	this.id = Math.floor((Math.random() * 100) + 1); 
 	this.channelName = "MSTK/Channel"+this.id;
 	this.mainContainer = mainContainer;
 	this.currentType = null;
@@ -79,7 +80,7 @@ jetChannel.prototype.createElementNewChannel = function()
 	var buttonAddChannel = document.createElement("input");
 
 	buttonWrapper.className = "firstBox";
-	buttonAddChannel.value = "Add New Protocol";
+	buttonAddChannel.value = "Add Protocol";
 	buttonAddChannel.type = "button";
 
 	buttonWrapper.appendChild(buttonAddChannel);
