@@ -1,0 +1,130 @@
+body{
+	font-family:sans-serif;
+	color:rgb(112, 112, 112);
+}
+
+#wrapper{
+	margin:0px auto;
+	min-width:800px;
+	padding:10px;
+}
+
+.tab_wrapper{
+	  padding: 10px;
+	  border: 2px solid rgb(0, 0, 0);
+	  width: 120px;
+	  display: inline-block;
+	  overflow-x: hidden;
+	  border-bottom: none;
+	  background: rgb(79, 79, 79);
+	  color: rgb(255, 255, 255);
+	  font-weight: bold;
+}
+
+
+#content_container{
+	  min-height: 500px;
+	  border: 1px solid rgb(201, 201, 201);
+	  background: rgb(231, 231, 231);
+}
+
+.protocol-container
+{
+	padding:10px;
+	background:rgb(240, 240, 240);
+}
+
+.ch_button_container
+{
+	width:150px;
+
+}
+
+.ch_button_container input[type="button"]
+{
+	width:90%;
+}
+
+.ch_type_container
+{
+	width:330px;
+
+}
+
+.ch_type_container input[type="text"]
+{
+	width:90%;
+}
+
+.ch_msg_container{
+	width:50%;
+}
+
+.ch_msg_container textarea
+{
+	width:100%;
+	min-height:250px;
+}
+
+.output-box{
+	padding: 20px 0px;
+}
+
+.output-box span:first-child{
+	display:inline-block;
+}
+
+.output-box textarea{
+	width:90%;	
+	height:200px;
+}
+
+
+.create_protocol-container
+{
+	padding:20px 10px;
+}
+
+
+/* Width */
+
+.firstBox {
+	width:125px;
+}
+
+.secondBox{
+	width:150px;
+}
+
+.thirdBox{
+	width:330px;
+}
+
+.forthBox{
+	width:50%;
+	min-width:550px;
+}
+
+
+
+
+/* share */
+
+.pd10{
+	padding:10px;
+}
+
+.ulWrapper{
+
+	padding: 0px;
+  	list-style-type: none;
+  	margin: 0px;
+}
+
+.ulWrapper li{
+	display:inline-block;
+}
+
+textarea{
+	vertical-align:text-top;
+}
