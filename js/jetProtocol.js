@@ -1,7 +1,7 @@
-jetProtocol = function( id, contentWrapper )
+jetProtocol = function( id, contentWrapper, protocolType )
 {
 	this.channelID = id;
-	
+	this.protocolType = protocolType;
 	this.contentWrapper = contentWrapper;
 
 	this.structure = {
@@ -60,8 +60,9 @@ jetProtocol.prototype.createElement = function()
 
 			var buttonColumn = document.createElement("li");
 			var buttonSetting = document.createElement("input");
+			buttonSetting.className = this.protocolType+"Btn"
 			buttonSetting.type = "button";
-			buttonSetting.value = "Publish";
+			buttonSetting.value = this.protocolType;
 			buttonColumn.appendChild(buttonSetting);			
 
 			var typeColumn = document.createElement("li");

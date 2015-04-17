@@ -21,7 +21,20 @@ jetTestHarnessCore.prototype.initialize = function()
 		content: document.getElementById("content_container")
 	};
 
-	this.createNewChannel();
+	/*
+	if (JET["Initialized"] === undefined || JET["Initialized"] === false) {
+        var msgId = { ID: "JetTestharnessMetastock", Title: "JET - Getting Started" };
+	    JET.init( msgId );
+		JET.onLoad( 
+		  function()
+		  { 
+		    this.createNewChannel();
+		  }.bind(this) 
+		);
+    }
+    */
+
+    this.createNewChannel();
 }
 
 jetTestHarnessCore.prototype.createNewChannel = function()
