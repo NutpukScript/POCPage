@@ -1,6 +1,7 @@
-jetProtocol = function( id, contentWrapper, protocolType )
+jetProtocol = function( id, channelName, contentWrapper, protocolType )
 {
 	this.channelID = id;
+	this.channelName = channelName;
 	this.protocolType = protocolType;
 	this.contentWrapper = contentWrapper;
 
@@ -26,15 +27,61 @@ jetProtocol = function( id, contentWrapper, protocolType )
 		underline: null
 	}
 
+	this.error = {
+		isError: false,
+		msg: ""
+	}
+
 	this.initialize();
 }
-
 
 jetProtocol.prototype.initialize = function(){
 
 	this.createElement();
-
 	this.registerEvent();
+}
+
+jetProtocol.prototype.onButtonClick = function()
+{
+
+	alert(this.protocolType);
+
+}
+
+jetProtocol.prototype.validateJSONMessage = function()
+{
+
+	var msgInput = this.structure.setting.msg;
+
+	try{
+		var jsonValue = JSON.parse(msgInput.value);
+		msgInput.value = JSON.stringify( jsonValue, null, 4 );
+		msgInput.style.backgroundColor = "";
+	}
+	catch(e)
+	{
+		console.error("invalid format json")
+		msgInput.style.backgroundColor = "rgb(255, 214, 214)";
+	}
+}
+
+jetProtocol.prototype.udpateOutput = function()
+{
+
+	var msgOutput = this.structure.output.textarea;
+
+	try{
+		var jsonValue = JSON.parse(msgOutput.value);
+		msgOutput.value = JSON.stringify( jsonValue, null, 4 );
+		msgOutput.style.backgroundColor = "rgb(255, 240, 231);";
+	}
+	catch(e)
+	{
+		console.error("invalid format json")
+		msgOutput.style.backgroundColor = "rgb(255, 214, 214)";
+	}
+
+
 }
 
 jetProtocol.prototype.createElement = function()
@@ -68,7 +115,7 @@ jetProtocol.prototype.createElement = function()
 			var typeColumn = document.createElement("li");
 			var typeInput = document.createElement("input");
 			typeInput.type = "text";
-			typeInput.value = "KobraMSTKChart";
+			typeInput.value = this.channelName;
 			typeColumn.appendChild(typeInput);
 
 			var msgColumn = document.createElement("li");
@@ -78,8 +125,18 @@ jetProtocol.prototype.createElement = function()
 
 			utilsColumn.className = "ch_utils_container firstBox";
 			buttonColumn.className = "ch_button_container secondBox";
-			typeColumn.className = "ch_type_container thirdBox";
+			typeColumn.className = "ch_type_container";
 			msgColumn.className = "ch_msg_container forthBox";
+
+			if( this.protocolType === "Subscribe" )
+			{
+				typeColumn.className += " thridBox-long";
+				msgColumn.style.display = "none";
+			}
+			else
+			{
+				typeColumn.className += " thridBox";	
+			}
 
 
 		tableSetting.appendChild(utilsColumn);
@@ -124,10 +181,19 @@ jetProtocol.prototype.createElement = function()
 	mainStructure.container.appendChild(outputStructure.container);
 	mainStructure.container.appendChild(underLineOBJ);
 
+
+	
+
 }
 
 
 jetProtocol.prototype.registerEvent = function(){
+
+	var settingStructure = this.structure.setting;
+	
+	settingStructure.button.onclick = this.onButtonClick.bind(this);
+	settingStructure.msg.onblur = this.validateJSONMessage.bind(this);
+
 
 }
 

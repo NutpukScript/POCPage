@@ -25,7 +25,8 @@ jetChannel = function( number, mainContainer )
 
 jetChannel.prototype.initialize =function()
 {	
-
+	this.OpenChannel();
+	
 	this.currentType = this.typeDefine[0];
 	this.createElementNewChannel();
 	this.createElementMain();
@@ -33,9 +34,16 @@ jetChannel.prototype.initialize =function()
 	this.newProtocol();
 }
 
+jetChannel.prototype.OpenChannel = function()
+{
+
+
+
+}
+
 jetChannel.prototype.newProtocol = function()
 {
-	var protocol = new jetProtocol( this.id, this.channelWrapper.content, this.currentType );
+	var protocol = new jetProtocol( this.id, this.channelName, this.channelWrapper.content, this.currentType );
 	this.listProtocol.push( protocol );
 }
 
