@@ -109,10 +109,16 @@
 
 .output-box textarea{
 	width:90%;	
-	height:200px;
 	background: rgb(255, 240, 231);
 }
 
+.Publish .output-box textarea{
+	height:30px;
+}
+
+.Subscribe .output-box textarea{
+	height:200px;
+}
 
 .create_protocol-container
 {
@@ -135,8 +141,8 @@
 }
 
 .forthBox{
-	width:50%;
-	min-width:550px;
+	width:40%;
+	
 }
 
 .thridBox-long{

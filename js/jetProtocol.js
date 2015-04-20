@@ -1,5 +1,7 @@
 jetProtocol = function( id, channelName, contentWrapper, protocolType )
 {
+	console.log("create new protocol");
+
 	this.channelID = id;
 	this.channelName = channelName;
 	this.protocolType = protocolType;
@@ -44,7 +46,27 @@ jetProtocol.prototype.initialize = function(){
 jetProtocol.prototype.onButtonClick = function()
 {
 
-	alert(this.protocolType);
+	var inputValue = this.structure.setting.type.value;
+	inputValue = inputValue.replace(/\s+/g, '');
+
+	if( this.protocolType === "Publish" )
+	{
+		var msgValue = this.structure.setting.msg.value;
+		msgValue = msgValue.replace(/\s+/g, '');
+		JET.publish( inputValue, msgValue );
+
+		this.updateOutputBox("Publish protocol: "+inputValue" message:"+msgValue);
+	}
+	else
+	{
+		cbSubscribe = function(data)
+		{
+			console.log("retrieve data: "+data)
+			this.updateOutputBox(data)
+		}.bind(this);
+
+		JET.subscribe( inputValue, cbSubscribe );
+	}
 
 }
 
@@ -65,23 +87,19 @@ jetProtocol.prototype.validateJSONMessage = function()
 	}
 }
 
-jetProtocol.prototype.udpateOutput = function()
+jetProtocol.prototype.updateOutputBox = function( value )
 {
 
 	var msgOutput = this.structure.output.textarea;
 
 	try{
-		var jsonValue = JSON.parse(msgOutput.value);
+		var jsonValue = JSON.parse( value );
 		msgOutput.value = JSON.stringify( jsonValue, null, 4 );
-		msgOutput.style.backgroundColor = "rgb(255, 240, 231);";
 	}
 	catch(e)
 	{
-		console.error("invalid format json")
-		msgOutput.style.backgroundColor = "rgb(255, 214, 214)";
+		msgOutput.value = value;
 	}
-
-
 }
 
 jetProtocol.prototype.createElement = function()
@@ -89,7 +107,7 @@ jetProtocol.prototype.createElement = function()
 	var mainStructure = this.structure;
 
 	mainStructure.container = document.createElement("div");
-	mainStructure.container.className = "protocol-container";
+	mainStructure.container.className = "protocol-container "+this.protocolType;
 	this.contentWrapper.appendChild(mainStructure.container);
 
 		// ------- Start Setting container ------------
@@ -120,7 +138,7 @@ jetProtocol.prototype.createElement = function()
 
 			var msgColumn = document.createElement("li");
 			var msgTextarea = document.createElement("textarea");
-			msgTextarea.innerHTML = JSON.stringify( {"channel":"MSTK1", "params":["hello"]}, null, 4 );
+			msgTextarea.value = "";//JSON.stringify( {"channel":"MSTK1", "params":["hello"]}, null, 4 );
 			msgColumn.appendChild(msgTextarea);
 
 			utilsColumn.className = "ch_utils_container firstBox";

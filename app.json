@@ -1,0 +1,8 @@
+{
+    "name": "JetTestHarnessMSTK",
+    "version": "0.0.1",
+    "type": "WebApp",
+    "displayName": "JetTestHarnessMSTK",
+    "description": "Test page for chart consolidation",
+    "defaultPlatform": "NodeJs"
+}

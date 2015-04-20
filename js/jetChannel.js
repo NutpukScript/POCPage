@@ -36,9 +36,7 @@ jetChannel.prototype.initialize =function()
 
 jetChannel.prototype.OpenChannel = function()
 {
-
-
-
+	JET.publish( "/MSTKCCFService/ControlChannel", JSON.stringify( {"channel": this.channelName} ) )
 }
 
 jetChannel.prototype.newProtocol = function()

@@ -1,0 +1,45 @@
+{
+  "name": "nova-chart",
+  "description": "Interactive Chart",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-shell": "~0.3.1",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-closure-tools": "~0.8.3",
+    "node-json-minify": "~0.1.3-a",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-compress": "~0.7.0",
+    "grunt-jasmine-node-coverage": "~0.1.7",
+    "grunt-karma": "~0.9.0",
+    "grunt-file-creator": "~0.1.2",
+    "karma": "~0.12.0",
+    "karma-sauce-launcher": "~0.1.8",
+    "karma-phantomjs-launcher": "~0.1.0",
+    "karma-script-launcher": "~0.1.0",
+    "karma-chrome-launcher": "~0.1.0",
+    "karma-closure": "~0.1.0",
+    "karma-jasmine": "~0.1.3",
+    "karma-ng-scenario": "~0.1.0",
+    "karma-requirejs": "~0.1.0",
+    "karma-coffee-preprocessor": "~0.2.1",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-coverage": "~0.2.6",
+    "karma-junit-reporter": "~0.2.0",
+    "karma-story-reporter": "~0.1.0",
+    "karma-beep-reporter": "~0.1.1",
+    "karma-htmlfile-reporter": "~0.1.0",
+    "load-grunt-tasks": "~0.2.1",
+    "grunt-plato": "~1.3.0",
+    "karma-html-reporter": "~0.1"
+  },
+  "scripts": {
+    "test": "grunt uitest"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}

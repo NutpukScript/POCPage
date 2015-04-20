@@ -1,0 +1,25 @@
+{
+    "datacenter_configurations": {
+        "dev": {
+            
+        },
+        "alpha": {
+            
+        },
+        "ppe1": {
+            
+        },
+        "stcp": {
+            
+        },
+        "ntcp": {
+            
+        },
+        "dtcp": {
+            
+        },
+        "hdcp": {
+
+        }
+    }
+}
