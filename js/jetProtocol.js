@@ -1,6 +1,6 @@
 jetProtocol = function( id, channelName, contentWrapper, protocolType )
 {
-	console.log("create new protocol");
+	console.log("create new protocol "+protocolType+" type");
 
 	this.channelID = id;
 	this.channelName = channelName;
@@ -16,7 +16,7 @@ jetProtocol = function( id, channelName, contentWrapper, protocolType )
 				remove: null
 			},
 			button: null,
-			type: null,
+			input: null,
 			msg: null
 		},
 
@@ -46,7 +46,7 @@ jetProtocol.prototype.initialize = function(){
 jetProtocol.prototype.onButtonClick = function()
 {
 
-	var inputValue = this.structure.setting.type.value;
+	var inputValue = this.structure.setting.input.value;
 	inputValue = inputValue.replace(/\s+/g, '');
 
 	if( this.protocolType === "Publish" )
@@ -55,9 +55,9 @@ jetProtocol.prototype.onButtonClick = function()
 		msgValue = msgValue.replace(/\s+/g, '');
 		JET.publish( inputValue, msgValue );
 
-		this.updateOutputBox("Publish protocol: "+inputValue" message:"+msgValue);
+		this.updateOutputBox("Publish Protocol: "+inputValue+" Message:"+msgValue);
 	}
-	else
+	else if( this.protocolType === "Subscribe" )
 	{
 		cbSubscribe = function(data)
 		{
@@ -66,6 +66,10 @@ jetProtocol.prototype.onButtonClick = function()
 		}.bind(this);
 
 		JET.subscribe( inputValue, cbSubscribe );
+	}
+	else
+	{
+		console.error("Error Can't Find Protocol Type");
 	}
 
 }
@@ -96,10 +100,16 @@ jetProtocol.prototype.updateOutputBox = function( value )
 		var jsonValue = JSON.parse( value );
 		msgOutput.value = JSON.stringify( jsonValue, null, 4 );
 	}
-	catch(e)
-	{
-		msgOutput.value = value;
-	}
+	catch(e){}
+
+	msgOutput.value = value;
+}
+
+jetProtocol.prototype.registerEvent = function(){
+	var settingStructure = this.structure.setting;
+	
+	settingStructure.button.onclick = this.onButtonClick.bind(this);
+	settingStructure.msg.onblur = this.validateJSONMessage.bind(this);
 }
 
 jetProtocol.prototype.createElement = function()
@@ -165,7 +175,7 @@ jetProtocol.prototype.createElement = function()
 		settingStructure.container.appendChild( tableSetting );
 		
 		settingStructure.button = buttonSetting;
-		settingStructure.type = typeInput;
+		settingStructure.input = typeInput;
 		settingStructure.msg = msgTextarea;
 
 		// ------- End Setting container ------------
@@ -199,23 +209,7 @@ jetProtocol.prototype.createElement = function()
 	mainStructure.container.appendChild(outputStructure.container);
 	mainStructure.container.appendChild(underLineOBJ);
 
-
-	
-
 }
-
-
-jetProtocol.prototype.registerEvent = function(){
-
-	var settingStructure = this.structure.setting;
-	
-	settingStructure.button.onclick = this.onButtonClick.bind(this);
-	settingStructure.msg.onblur = this.validateJSONMessage.bind(this);
-
-
-}
-
-
 
 /*
 <div class="content_wrapper">
