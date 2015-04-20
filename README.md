@@ -1,6 +1,5 @@
 # JET TestHarness
- Welcome to JET TestHarness for chart consolidation
- to use this project please follow this instruction first
+ Welcome to JET TestHarness, for new user please follow below instruction.
  
  **Setup**
  1. Run GitBash at root directory
